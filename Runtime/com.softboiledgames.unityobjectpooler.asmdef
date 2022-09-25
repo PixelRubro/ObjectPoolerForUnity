@@ -1,0 +1,15 @@
+{
+    "name": "com.softboiledgames.unityobjectpooler",
+    "references": [
+        "GUID:427b94ed32f407248bedfbaa78a11f5b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
