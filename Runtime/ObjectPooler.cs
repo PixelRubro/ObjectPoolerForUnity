@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ namespace SoftBoiledGames.ObjectPooler
     public class ObjectPooler : MonoBehaviour
     {
         #region Actions
+
+        public Action OnExpand;
+
         #endregion
 
         #region Serialized fields
@@ -16,7 +20,7 @@ namespace SoftBoiledGames.ObjectPooler
         private PoolableMonobehaviour _poolableObjectPrefab;
 
         [SerializeField]
-        private int _capacity = 16;
+        private int _size = 12;
 
         [SerializeField]
         [InspectorAttributes.LeftToggle]
@@ -28,7 +32,16 @@ namespace SoftBoiledGames.ObjectPooler
 
         [SerializeField]
         [InspectorAttributes.LeftToggle]
+        [InspectorAttributes.ShowIf(nameof(_hasCustomParent), false)]
         private bool _spawnAsChild = false;
+
+        [SerializeField]
+        [InspectorAttributes.LeftToggle]
+        private bool _hasCustomParent = false;
+
+        [SerializeField]
+        [InspectorAttributes.ShowIf(nameof(_hasCustomParent))]
+        private Transform _customParent;
 
         [SerializeField]
         [InspectorAttributes.LeftToggle]
@@ -42,7 +55,7 @@ namespace SoftBoiledGames.ObjectPooler
 
         #region Non-serialized fields
 
-        private PoolableMonobehaviour[] _pooledObjects;
+        private Stack<PoolableMonobehaviour> _pool;
 
         private Transform _transform;
 
@@ -50,7 +63,7 @@ namespace SoftBoiledGames.ObjectPooler
 
         #region Properties
 
-        public int Capacity => _capacity;
+        public int Size => _size;
 
         #endregion
 
@@ -113,6 +126,22 @@ namespace SoftBoiledGames.ObjectPooler
             return null;
         }
 
+        public void DeactivateAll()
+        {
+            foreach (var item in _pool)
+            {
+                item.gameObject.SetActive(false);
+            }
+        }
+
+        public void ReturnObjectToPool(PoolableMonobehaviour poolableObject)
+        {
+            if (poolableObject.gameObject.activeInHierarchy == false)
+            {
+                _pool.Push(poolableObject);
+            }
+        }
+
         #endregion
 
         #region Protected methods
@@ -120,51 +149,55 @@ namespace SoftBoiledGames.ObjectPooler
 
         #region Private methods
 
-        private PoolableMonobehaviour GetInactivePooledObject()
-        {
-            return _pooledObjects.FirstOrDefault<PoolableMonobehaviour>((obj) => obj.gameObject.activeInHierarchy == false);
-        }
+        #region Pool operations
 
-        private T GetInactivePooledObject<T>() where T : PoolableMonobehaviour
+        private void CreatePool()
         {
-            var pooledObject = _pooledObjects.FirstOrDefault<PoolableMonobehaviour>((obj) => obj is T && obj.gameObject.activeInHierarchy == false);
-            return pooledObject as T;
+            _pool = new Stack<PoolableMonobehaviour>();
+
+            for (int i = 0; i < _size; i++)
+            {
+                var poolableObject = CreateObject();
+                poolableObject.gameObject.SetActive(false);
+                _pool.Push(poolableObject);
+            }
         }
 
         private void ExpandPool()
         {
-            _capacity += _expansionSize;
-            var oldObjects = _pooledObjects;
-            _pooledObjects = new PoolableMonobehaviour[_capacity];
-            var parent = FindSpawnParent();
+            _size += _expansionSize;
 
-            for (int i = 0; i < oldObjects.Length; i++)
+            for (int i = 0; i < _expansionSize; i++)
             {
-                _pooledObjects[i] = oldObjects[i];
+                var poolableObject = CreateObject();
+                poolableObject.gameObject.SetActive(false);
+                _pool.Push(poolableObject);
             }
 
-            for (int i = oldObjects.Length; i < _capacity; i++)
-            {
-                _pooledObjects[i] = Instantiate<PoolableMonobehaviour>(_poolableObjectPrefab, parent, false);
-                _pooledObjects[i].gameObject.SetActive(false);
-            }
+            OnExpand?.Invoke();
         }
 
-        private void CreatePool()
+        #endregion
+
+        #region Poolable object handling
+
+        private PoolableMonobehaviour CreateObject()
         {
-            _pooledObjects = new PoolableMonobehaviour[_capacity];
-            var parent = FindSpawnParent();
-            
-            for (int i = 0; i < _capacity; i++)
-            {
-                _pooledObjects[i] = Instantiate<PoolableMonobehaviour>(_poolableObjectPrefab, parent, false);
-                _pooledObjects[i].gameObject.SetActive(false);
-            }
+            var parent = GetSpawnParent();
+            var poolableObject = Instantiate<PoolableMonobehaviour>(_poolableObjectPrefab, parent, false);
+            poolableObject.OnDeactivate += () => ReturnObjectToPool(poolableObject);
+            return poolableObject;
         }
 
-        private Transform FindSpawnParent()
+        private PoolableMonobehaviour GetInactivePooledObject()
         {
-            return _spawnAsChild ? _transform : null;
+            return _pool.FirstOrDefault<PoolableMonobehaviour>((obj) => obj.gameObject.activeInHierarchy == false);
+        }
+
+        private T GetInactivePooledObject<T>() where T : PoolableMonobehaviour
+        {
+            var pooledObject = _pool.FirstOrDefault<PoolableMonobehaviour>((obj) => obj is T && obj.gameObject.activeInHierarchy == false);
+            return pooledObject as T;
         }
 
         private void ActivateObject(PoolableMonobehaviour pooledObject)
@@ -188,6 +221,23 @@ namespace SoftBoiledGames.ObjectPooler
         {
             poolableObject.transform.position = Vector3.zero;
             poolableObject.transform.rotation = Quaternion.identity;
+        }
+
+        #endregion
+
+        private Transform GetSpawnParent()
+        {
+            if (_hasCustomParent)
+            {
+                return _customParent;
+            }
+
+            if (_spawnAsChild)
+            {
+                return _transform;
+            }
+
+            return null;
         }
 
         #endregion  
