@@ -126,14 +126,6 @@ namespace SoftBoiledGames.ObjectPooler
             return null;
         }
 
-        public void DeactivateAll()
-        {
-            foreach (var item in _pool)
-            {
-                item.gameObject.SetActive(false);
-            }
-        }
-
         public void ReturnObjectToPool(PoolableMonobehaviour poolableObject)
         {
             if (poolableObject.gameObject.activeInHierarchy == false)
