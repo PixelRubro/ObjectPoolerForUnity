@@ -46,8 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 361e71fbd6460534392cce6e687e4366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deactivationCountdownDuration: 2
   _hasDeactivationTimer: 1
-  _deactivationTime: 2
+  _deactivationTimerDuration: 2
+  _hasDeactivationByTicks: 0
+  _ticksToDeactivate: 3
 --- !u!212 &7548762405404707392
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -144,4 +147,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

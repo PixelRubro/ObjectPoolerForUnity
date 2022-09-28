@@ -24,6 +24,7 @@ namespace SoftBoiledGames.ObjectPooler
         private float _deactivationCountdownDuration = 2f;
 
         [SerializeField]
+        [InspectorAttributes.LeftToggle]
         private bool _hasDeactivationTimer = true;
 
         [SerializeField]
@@ -31,16 +32,17 @@ namespace SoftBoiledGames.ObjectPooler
         private float _deactivationTimerDuration = 2f;
 
         [SerializeField]
+        [InspectorAttributes.HideIf(nameof(_hasDeactivationTimer))]
+        [InspectorAttributes.LeftToggle]
         private bool _hasDeactivationByTicks = false;
 
         [SerializeField]
+        [InspectorAttributes.ShowIf(nameof(_hasDeactivationByTicks))]
         private int _ticksToDeactivate = 3;
 
         #endregion
 
         #region Unserialized fields
-
-        private float _activeTime;
 
         private int _id;
 
@@ -58,24 +60,19 @@ namespace SoftBoiledGames.ObjectPooler
 
         #region Unity Events
 
-        protected void Start()
+        protected virtual void Start()
         {
             CheckInitialization();
         }
 
-        protected void OnEnable()
+        protected virtual void OnEnable()
         {
-            OnActivate?.Invoke();
+            Activate();
         }
 
-        protected void OnDisable()
+        protected virtual void OnDisable()
         {
-            OnDeactivation?.Invoke();
-        }
-
-        protected void Update()
-        {
-            TickDeactivationTime();
+            DeactivateGameObject();
         }
 
         #endregion
@@ -110,9 +107,13 @@ namespace SoftBoiledGames.ObjectPooler
         public void Activate()
         {
             gameObject.SetActive(true);
-            _activeTime = _deactivationTimerDuration;
             _ticksLeft = _ticksToDeactivate;
             OnActivate?.Invoke();
+
+            if (_hasDeactivationTimer)
+            {
+                Invoke(nameof(StartDeactivation), _deactivationTimerDuration);
+            }
         }
 
         public void Activate(float lifespan)
@@ -120,8 +121,8 @@ namespace SoftBoiledGames.ObjectPooler
             gameObject.SetActive(true);
             _hasDeactivationTimer = true;
             _hasDeactivationByTicks = false;
-            _activeTime = lifespan;
             OnActivate?.Invoke();
+            Invoke(nameof(StartDeactivation), lifespan);
         }
 
         public void Activate(int ticks)
@@ -167,21 +168,6 @@ namespace SoftBoiledGames.ObjectPooler
         #endregion
 
         #region Private Methods
-
-        private void TickDeactivationTime()
-        {
-            if (!_hasDeactivationTimer)
-            {
-                return;
-            }
-
-            _activeTime -= Time.deltaTime;
-
-            if (_activeTime <= 0f)
-            {
-                StartDeactivation();
-            }
-        }
 
         private void CheckInitialization()
         {

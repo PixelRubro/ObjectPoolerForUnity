@@ -33,6 +33,11 @@ namespace SoftBoiledGames.ObjectPooler.Demo
             _rb2d = GetComponent<Rigidbody2D>();
         }
 
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            gameObject.SetActive(false);
+        }
+
         #endregion
 
         #region Public methods

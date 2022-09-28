@@ -21,22 +21,23 @@ namespace SoftBoiledGames.ObjectPooler
         private PoolableMonobehaviour _poolableObjectPrefab;
 
         [SerializeField]
+        [InspectorAttributes.DisableInPlayMode]
         private int _size = 12;
 
         [SerializeField]
         [InspectorAttributes.LeftToggle]
-        private bool _isExpandable = true;
+        private bool _isExpansible = true;
 
         [SerializeField]
-        [InspectorAttributes.ShowIf(nameof(_isExpandable))]
+        [InspectorAttributes.ShowIf(nameof(_isExpansible))]
         private int _expansionSize = 3;
 
         [SerializeField]
         [InspectorAttributes.LeftToggle]
-        [InspectorAttributes.ShowIf(nameof(_hasCustomParent), false)]
         private bool _spawnAsChild = false;
 
         [SerializeField]
+        [InspectorAttributes.HideIf(nameof(_spawnAsChild))]
         [InspectorAttributes.LeftToggle]
         private bool _hasCustomParent = false;
 
@@ -103,7 +104,7 @@ namespace SoftBoiledGames.ObjectPooler
                 return pooledObject;
             }
             
-            if(_isExpandable)
+            if(_isExpansible)
             {
                 ExpandPool();
                 return Pop();
@@ -119,11 +120,12 @@ namespace SoftBoiledGames.ObjectPooler
             if (pooledObject != null)
             {
                 ResetObject(pooledObject);
+                print(pooledObject.gameObject.activeInHierarchy);
                 ActivateObject(pooledObject);
                 return pooledObject;
             }
             
-            if(_isExpandable)
+            if(_isExpansible)
             {
                 ExpandPool();
                 return Pop<T>();
@@ -226,6 +228,11 @@ namespace SoftBoiledGames.ObjectPooler
 
         private T GetInactivePooledObject<T>() where T : PoolableMonobehaviour
         {
+            if (_pool.Count <= 0)
+            {
+                return null;
+            }
+            
             var pooledObject = _pool.Pop();
             return pooledObject as T;
         }
