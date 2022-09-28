@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using SoftBoiledGames.ObjectPooler.Exceptions;
 
 namespace SoftBoiledGames.ObjectPooler
 {
@@ -26,8 +27,8 @@ namespace SoftBoiledGames.ObjectPooler
         [InspectorAttributes.LeftToggle]
         private bool _isExpandable = true;
 
-        [InspectorAttributes.ShowIf(nameof(_isExpandable))]
         [SerializeField]
+        [InspectorAttributes.ShowIf(nameof(_isExpandable))]
         private int _expansionSize = 3;
 
         [SerializeField]
@@ -59,6 +60,10 @@ namespace SoftBoiledGames.ObjectPooler
 
         private Transform _transform;
 
+        private int _currentId = 1;
+
+        private Dictionary<int, PoolableMonobehaviour> _pooledObjectsDictionary = new Dictionary<int, PoolableMonobehaviour>();
+
         #endregion
 
         #region Properties
@@ -80,6 +85,7 @@ namespace SoftBoiledGames.ObjectPooler
         private void Start()
         {
             CreatePool();
+            FillPool(_size);
         }
 
         #endregion
@@ -126,22 +132,25 @@ namespace SoftBoiledGames.ObjectPooler
             return null;
         }
 
-        public void AddObjectToPool(PoolableMonobehaviour poolableObject, bool forceDeactivation = true)
+        public void Add(PoolableMonobehaviour poolableObject, bool forceDeactivation = true)
         {
-            if ((poolableObject.gameObject.activeInHierarchy == true) && (forceDeactivation))
-            {
-                poolableObject.gameObject.SetActive(false);
-            }
-
-            if (poolableObject.gameObject.activeInHierarchy == false)
-            {
-                _pool.Push(poolableObject);
-                _size++;
-            }
+            _size++;
+            RegisterObject(poolableObject);
+            Return(poolableObject, forceDeactivation);
         }
 
-        public void ReturnObjectToPool(PoolableMonobehaviour poolableObject, bool forceDeactivation = true)
+        public void Return(PoolableMonobehaviour poolableObject, bool forceDeactivation = true)
         {
+            if (_pooledObjectsDictionary.ContainsKey(poolableObject.Id) == false)
+            {
+                throw new ForeignObjectException($"There's no object with id {poolableObject.Id} in this pool.");
+            }
+
+            if (_pooledObjectsDictionary[poolableObject.Id] != poolableObject)
+            {
+                throw new ForeignObjectException($"The entry for id {poolableObject.Id} does not match the provided object.");
+            }
+
             if ((poolableObject.gameObject.activeInHierarchy == true) && (forceDeactivation))
             {
                 poolableObject.gameObject.SetActive(false);
@@ -165,27 +174,23 @@ namespace SoftBoiledGames.ObjectPooler
         private void CreatePool()
         {
             _pool = new Stack<PoolableMonobehaviour>();
-
-            for (int i = 0; i < _size; i++)
-            {
-                var poolableObject = CreateObject();
-                poolableObject.gameObject.SetActive(false);
-                _pool.Push(poolableObject);
-            }
         }
 
         private void ExpandPool()
         {
             _size += _expansionSize;
+            FillPool(_expansionSize);
+            OnExpand?.Invoke();
+        }
 
-            for (int i = 0; i < _expansionSize; i++)
+        private void FillPool(int objectCount)
+        {
+            for (int i = 0; i < objectCount; i++)
             {
                 var poolableObject = CreateObject();
-                poolableObject.gameObject.SetActive(false);
+                RegisterObject(poolableObject);
                 _pool.Push(poolableObject);
             }
-
-            OnExpand?.Invoke();
         }
 
         #endregion
@@ -196,18 +201,32 @@ namespace SoftBoiledGames.ObjectPooler
         {
             var parent = GetSpawnParent();
             var poolableObject = Instantiate<PoolableMonobehaviour>(_poolableObjectPrefab, parent, false);
-            poolableObject.OnDeactivate += () => ReturnObjectToPool(poolableObject);
+            poolableObject.Initialize(_currentId++);
+            poolableObject.gameObject.SetActive(false);
+            poolableObject.OnDeactivation += () => Return(poolableObject);
             return poolableObject;
+        }
+
+        private void RegisterObject(PoolableMonobehaviour poolableObject)
+        {
+            var id = poolableObject.Id;
+
+            if (_pooledObjectsDictionary.ContainsKey(id))
+            {
+                throw new DuplicateRegisteringException($"There's already an object registered with id {id}");
+            }
+            
+            _pooledObjectsDictionary.Add(id, poolableObject);
         }
 
         private PoolableMonobehaviour GetInactivePooledObject()
         {
-            return _pool.FirstOrDefault<PoolableMonobehaviour>((obj) => obj.gameObject.activeInHierarchy == false);
+            return _pool.Pop();
         }
 
         private T GetInactivePooledObject<T>() where T : PoolableMonobehaviour
         {
-            var pooledObject = _pool.FirstOrDefault<PoolableMonobehaviour>((obj) => obj is T && obj.gameObject.activeInHierarchy == false);
+            var pooledObject = _pool.Pop();
             return pooledObject as T;
         }
 
