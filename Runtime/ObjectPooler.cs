@@ -120,7 +120,6 @@ namespace SoftBoiledGames.ObjectPooler
             if (pooledObject != null)
             {
                 ResetObject(pooledObject);
-                print(pooledObject.gameObject.activeInHierarchy);
                 ActivateObject(pooledObject);
                 return pooledObject;
             }
@@ -134,14 +133,14 @@ namespace SoftBoiledGames.ObjectPooler
             return null;
         }
 
-        public void Add(PoolableMonobehaviour poolableObject, bool forceDeactivation = true)
+        public void Add(PoolableMonobehaviour poolableObject)
         {
             _size++;
             RegisterObject(poolableObject);
-            Return(poolableObject, forceDeactivation);
+            Return(poolableObject);
         }
 
-        public void Return(PoolableMonobehaviour poolableObject, bool forceDeactivation = true)
+        public void Return(PoolableMonobehaviour poolableObject)
         {
             if (_pooledObjectsDictionary.ContainsKey(poolableObject.Id) == false)
             {
@@ -153,7 +152,7 @@ namespace SoftBoiledGames.ObjectPooler
                 throw new ForeignObjectException($"The entry for id {poolableObject.Id} does not match the provided object.");
             }
 
-            if ((poolableObject.gameObject.activeInHierarchy == true) && (forceDeactivation))
+            if (poolableObject.gameObject.activeInHierarchy == true)
             {
                 poolableObject.gameObject.SetActive(false);
             }

@@ -38,7 +38,8 @@ namespace SoftBoiledGames.ObjectPooler.Demo
         {
             if (IsInLayerMask(other.gameObject, _playerShotLayer))
             {
-                StartDeactivation(Die);
+                Die();
+                StartDeactivation();
             }
         }
 

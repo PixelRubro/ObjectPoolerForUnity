@@ -92,48 +92,6 @@ namespace SoftBoiledGames.ObjectPooler
             }
         }
 
-        public void Initialize(int id)
-        {
-            if (_isInitialized)
-            {
-                return;
-            }
-
-            _id = id;
-            _isInitialized = true;
-            OnInitialize?.Invoke();
-        }
-
-        public void Activate()
-        {
-            gameObject.SetActive(true);
-            _ticksLeft = _ticksToDeactivate;
-            OnActivate?.Invoke();
-
-            if (_hasDeactivationTimer)
-            {
-                Invoke(nameof(StartDeactivation), _deactivationTimerDuration);
-            }
-        }
-
-        public void Activate(float lifespan)
-        {
-            gameObject.SetActive(true);
-            _hasDeactivationTimer = true;
-            _hasDeactivationByTicks = false;
-            OnActivate?.Invoke();
-            Invoke(nameof(StartDeactivation), lifespan);
-        }
-
-        public void Activate(int ticks)
-        {
-            gameObject.SetActive(true);
-            _hasDeactivationTimer = false;
-            _hasDeactivationByTicks = true;
-            _ticksLeft = ticks;
-            OnActivate?.Invoke();
-        }
-
         public void StartDeactivation()
         {
             OnDeactivationProgrammed?.Invoke();
@@ -146,23 +104,55 @@ namespace SoftBoiledGames.ObjectPooler
             Invoke(nameof(DeactivateGameObject), time);
         }
 
-        public void StartDeactivation(Action callback)
-        {
-            OnDeactivationProgrammed?.Invoke();
-            callback.Invoke();
-            Invoke(nameof(DeactivateGameObject), _deactivationCountdownDuration);
-        }
-
-        public void StartDeactivation(Action callback, float time)
-        {
-            OnDeactivationProgrammed?.Invoke();
-            callback.Invoke();
-            Invoke(nameof(DeactivateGameObject), time);
-        }
-
         public void DeactivateImmediate()
         {
             DeactivateGameObject();
+        }
+
+        #endregion
+
+        #region Internal methods
+
+        internal void Initialize(int id)
+        {
+            if (_isInitialized)
+            {
+                return;
+            }
+
+            _id = id;
+            _isInitialized = true;
+            OnInitialize?.Invoke();
+        }
+
+        internal void Activate()
+        {
+            gameObject.SetActive(true);
+            _ticksLeft = _ticksToDeactivate;
+            OnActivate?.Invoke();
+
+            if (_hasDeactivationTimer)
+            {
+                Invoke(nameof(StartDeactivation), _deactivationTimerDuration);
+            }
+        }
+
+        internal void Activate(float lifespan)
+        {
+            gameObject.SetActive(true);
+            _hasDeactivationTimer = true;
+            _hasDeactivationByTicks = false;
+            OnActivate?.Invoke();
+            Invoke(nameof(StartDeactivation), lifespan);
+        }
+
+        internal void Activate(int ticks)
+        {
+            gameObject.SetActive(true);
+            _hasDeactivationTimer = false;
+            _hasDeactivationByTicks = true;
+            _ticksLeft = ticks;
+            OnActivate?.Invoke();
         }
 
         #endregion
