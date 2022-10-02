@@ -8,12 +8,24 @@ namespace SoftBoiledGames.ObjectPooler
     {
         #region Actions
 
+        /// <summary>
+        /// Triggered when the object is initialized by the pool.
+        /// </summary>
         public Action OnInitialize;
 
+        /// <summary>
+        /// Triggered when the object is activated by the pool.
+        /// </summary>
         public Action OnActivate;
 
+        /// <summary>
+        /// Triggered when the object has its deactivation process initiated.
+        /// </summary>
         public Action OnDeactivationProgrammed;
 
+        /// <summary>
+        /// Triggered when the object has its game object deactivated.
+        /// </summary>
         public Action OnDeactivation;
 
         #endregion
@@ -79,6 +91,10 @@ namespace SoftBoiledGames.ObjectPooler
 
         #region Public Methods
 
+        /// <summary>
+        /// For a poolable object that has its deactivation driven by "ticks" this method 
+        /// decrements a tick. When there are no ticks left, the object is deactivated.
+        /// </summary>
         public void Tick()
         {
             if (_hasDeactivationByTicks)
@@ -92,18 +108,27 @@ namespace SoftBoiledGames.ObjectPooler
             }
         }
 
+        /// <summary>
+        /// Start deactivation process.
+        /// </summary>
         public void StartDeactivation()
         {
             OnDeactivationProgrammed?.Invoke();
             Invoke(nameof(DeactivateGameObject), _deactivationCountdownDuration);
         }
 
+        /// <summary>
+        /// Start deactivation process.
+        /// </summary>
         public void StartDeactivation(float time)
         {
             OnDeactivationProgrammed?.Invoke();
             Invoke(nameof(DeactivateGameObject), time);
         }
-
+        
+        /// <summary>
+        /// Deactivate object at once.
+        /// </summary>
         public void DeactivateImmediate()
         {
             DeactivateGameObject();

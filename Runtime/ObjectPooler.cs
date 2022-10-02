@@ -11,6 +11,9 @@ namespace SoftBoiledGames.ObjectPooler
     {
         #region Actions
 
+        /// <summary>
+        /// Triggers when the pool expands itself.
+        /// </summary>
         public Action OnExpand;
 
         #endregion
@@ -93,6 +96,9 @@ namespace SoftBoiledGames.ObjectPooler
 
         #region Public methods
 
+        /// <summary>
+        /// Retrieves an object from the pool.
+        /// </summary>
         public PoolableMonobehaviour Pop()
         {
             var pooledObject = GetInactivePooledObject();
@@ -113,6 +119,10 @@ namespace SoftBoiledGames.ObjectPooler
             return null;
         }
 
+        /// <summary>
+        /// Retrieves an object from the pool.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         public T Pop<T>() where T : PoolableMonobehaviour
         {
             var pooledObject = GetInactivePooledObject<T>();
@@ -133,6 +143,9 @@ namespace SoftBoiledGames.ObjectPooler
             return null;
         }
 
+        /// <summary>
+        /// Add a new object to the pool.
+        /// </summary>
         public void Add(PoolableMonobehaviour poolableObject)
         {
             _size++;
@@ -140,6 +153,10 @@ namespace SoftBoiledGames.ObjectPooler
             Return(poolableObject);
         }
 
+        /// <summary>
+        /// Return to the pool an object that belongs to it.
+        /// </summary>
+        /// <param name="poolableObject"></param>
         public void Return(PoolableMonobehaviour poolableObject)
         {
             if (_pooledObjectsDictionary.ContainsKey(poolableObject.Id) == false)
