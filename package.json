@@ -2,7 +2,7 @@
   "name": "com.softboiledgames.quickpooler",
   "displayName": "Quick Pooler",
   "description": "A object pooling package for use in Unity projects.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "unity": "2019.4",
   "license": "MIT",
   "author": {
