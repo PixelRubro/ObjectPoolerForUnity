@@ -72,7 +72,7 @@ namespace SoftBoiledGames.ObjectPooler.Demo
 
         private void Fire()
         {
-            if(!Input.GetButtonDown("Fire"))
+            if(!Input.GetKeyDown(KeyCode.Space))
             {
                 return;
             }
