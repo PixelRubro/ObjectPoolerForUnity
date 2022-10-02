@@ -22,6 +22,10 @@ It's possible to add new objects to the pool using the method Add, but an except
 
 The operations to retrieve an object from the pool and to return an object to the pool have both a complexity of O(1).
 
+## Why can't I open the demo scene?
+
+This is a known limitation of the Unity team. Until they look at it, you will have to drag the scene file into somewhere in your "Assets" folder.
+
 ## There are any events fired along the flow of the asset?
 
 Yes, both the pool and the poolable object have Actions that you can subscribe methods to. They always start with the prefix "On".
