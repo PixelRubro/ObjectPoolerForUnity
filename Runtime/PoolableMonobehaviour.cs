@@ -36,20 +36,28 @@ namespace SoftBoiledGames.ObjectPooler
         private float _deactivationCountdownDuration = 2f;
 
         [SerializeField]
+#if UNITY_EDITOR
         [InspectorAttributes.LeftToggle]
+#endif
         private bool _hasDeactivationTimer = true;
 
         [SerializeField]
+#if UNITY_EDITOR
         [InspectorAttributes.ShowIf(nameof(_hasDeactivationTimer))]
+#endif
         private float _deactivationTimerDuration = 2f;
 
         [SerializeField]
+#if UNITY_EDITOR
         [InspectorAttributes.HideIf(nameof(_hasDeactivationTimer))]
         [InspectorAttributes.LeftToggle]
+#endif
         private bool _hasDeactivationByTicks = false;
 
         [SerializeField]
+#if UNITY_EDITOR
         [InspectorAttributes.ShowIf(nameof(_hasDeactivationByTicks))]
+#endif
         private int _ticksToDeactivate = 3;
 
         #endregion

@@ -24,36 +24,52 @@ namespace SoftBoiledGames.ObjectPooler
         private PoolableMonobehaviour _poolableObjectPrefab;
 
         [SerializeField]
+#if UNITY_EDITOR
         [InspectorAttributes.DisableInPlayMode]
+#endif
         private int _size = 12;
 
         [SerializeField]
+#if UNITY_EDITOR
         [InspectorAttributes.LeftToggle]
+#endif
         private bool _isExpansible = true;
 
         [SerializeField]
+#if UNITY_EDITOR
         [InspectorAttributes.ShowIf(nameof(_isExpansible))]
+#endif
         private int _expansionSize = 3;
 
         [SerializeField]
+#if UNITY_EDITOR
         [InspectorAttributes.LeftToggle]
+#endif
         private bool _spawnAsChild = false;
 
         [SerializeField]
+#if UNITY_EDITOR
         [InspectorAttributes.HideIf(nameof(_spawnAsChild))]
         [InspectorAttributes.LeftToggle]
+#endif
         private bool _hasCustomParent = false;
 
         [SerializeField]
+#if UNITY_EDITOR
         [InspectorAttributes.ShowIf(nameof(_hasCustomParent))]
+#endif
         private Transform _customParent;
 
         [SerializeField]
+#if UNITY_EDITOR
         [InspectorAttributes.LeftToggle]
+#endif
         private bool _overrideObjectLifespan = false;
 
         [SerializeField]
+#if UNITY_EDITOR
         [InspectorAttributes.ShowIf(nameof(_overrideObjectLifespan))]
+#endif
         private float _objectLifespan = 1.5f;
 
         #endregion
