@@ -11,7 +11,7 @@ This is an asset created to easily pool objects to avoid garbage collection. Ins
 - Open the Package Manager window
 - Click on the "plus" sign
 - Select "Add package from git URL"
-- Paste this repo's SSH link (git@github.com:SoftBoiledGames/UnityXtensions.git)
+- Paste this repo's SSH link (git@github.com:SoftBoiledGames/QuickPooler.git)
 
 ### Editing manifest file
 
