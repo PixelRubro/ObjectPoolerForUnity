@@ -17,7 +17,7 @@ This is an asset created to easily pool objects to avoid garbage collection. Ins
 
 Add the following line to your `manifest.json` found in the "Packages" folder
 
-`    "com.softboiledgames.unityxtension": "git@github.com:SoftBoiledGames/QuickPooler.git"`
+`    "com.softboiledgames.quickpooler": "git@github.com:SoftBoiledGames/QuickPooler.git"`
 
 ## How do I use this?
 
