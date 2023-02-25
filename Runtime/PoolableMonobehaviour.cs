@@ -71,6 +71,8 @@ namespace PixelSpark.ObjectPooler
 
         private int _ticksLeft;
 
+        private float _timeLeft;
+
         private Transform _transform;
 
         private QuickObjectPooler _pool;
@@ -93,6 +95,11 @@ namespace PixelSpark.ObjectPooler
         protected virtual void Start()
         {
             CheckInitialization();
+        }
+
+        protected virtual void Update()
+        {
+            ProcessDeactivationTime();
         }
 
         protected virtual void OnEnable()
@@ -135,16 +142,6 @@ namespace PixelSpark.ObjectPooler
         public void StartDeactivation()
         {
             OnDeactivationProgrammed?.Invoke();
-            Invoke(nameof(DeactivateGameObject), _deactivationCountdownDuration);
-        }
-
-        /// <summary>
-        /// Start deactivation process.
-        /// </summary>
-        public void StartDeactivation(float time)
-        {
-            OnDeactivationProgrammed?.Invoke();
-            Invoke(nameof(DeactivateGameObject), time);
         }
         
         /// <summary>
@@ -183,11 +180,7 @@ namespace PixelSpark.ObjectPooler
             gameObject.SetActive(true);
             _ticksLeft = _ticksToDeactivate;
             OnActivate?.Invoke();
-
-            if (_hasDeactivationTimer)
-            {
-                Invoke(nameof(StartDeactivation), _deactivationTimerDuration);
-            }
+            _timeLeft = _deactivationTimerDuration;
         }
 
         internal void Activate(float lifespan)
@@ -197,7 +190,7 @@ namespace PixelSpark.ObjectPooler
             _hasDeactivationByTicks = false;
             OnActivate?.Invoke();
             // StartCoroutine(KillObjectInTime(lifespan));
-            Invoke(nameof(StartDeactivation), lifespan);
+            _timeLeft = lifespan;
         }
 
         internal void Activate(int ticks)
@@ -218,6 +211,21 @@ namespace PixelSpark.ObjectPooler
             if ((!_isInitialized) || (_id == 0))
             {
                 throw new ObjectInitializationException("This object was not initialized by an object pool.");
+            }
+        }
+
+        private void ProcessDeactivationTime()
+        {
+            if (_hasDeactivationTimer == false)
+            {
+                return;
+            }
+
+            _timeLeft -= Time.deltaTime;
+
+            if (_timeLeft <= 0f)
+            {
+                DeactivateGameObject();
             }
         }
 
