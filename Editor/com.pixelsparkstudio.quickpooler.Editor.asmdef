@@ -1,5 +1,5 @@
 {
-    "name": "PixelSparkStudio.UnityObjectPooler.Editor",
+    "name": "pixelsparkstudio.quickpooler.Editor",
     "references": [],
     "includePlatforms": [
         "Editor"
