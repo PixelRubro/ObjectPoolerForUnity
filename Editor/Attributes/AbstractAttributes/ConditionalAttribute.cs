@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SoftBoiledGames.ObjectPooler.InspectorAttributes
+namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Base class for comparison attributes.

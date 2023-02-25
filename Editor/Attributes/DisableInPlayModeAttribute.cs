@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SoftBoiledGames.ObjectPooler.InspectorAttributes
+namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Make the field read-only when the editor is in play mode.

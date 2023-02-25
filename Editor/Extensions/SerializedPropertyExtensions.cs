@@ -2,12 +2,12 @@ using UnityEditor;
 using System;
 using System.Linq;
 using System.Reflection;
-using SoftBoiledGames.ObjectPooler.InspectorAttributes;
-using SoftBoiledGames.ObjectPooler.InspectorAttributes.Utilities;
+using PixelSparkStudio.ObjectPooler.InspectorAttributes;
+using PixelSparkStudio.ObjectPooler.InspectorAttributes.Utilities;
 
 #if UNITY_EDITOR
 
-namespace SoftBoiledGames.ObjectPooler.Extensions
+namespace PixelSparkStudio.ObjectPooler.Extensions
 {
     public static class SerializedPropertyExtensions
     {

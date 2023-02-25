@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace SoftBoiledGames.ObjectPooler.InspectorAttributes.Utilities
+namespace PixelSparkStudio.ObjectPooler.InspectorAttributes.Utilities
 {
     public class HelperMethods 
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SoftBoiledGames.ObjectPooler.Demo
+namespace PixelSparkStudio.ObjectPooler.Demo
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class Shot : PoolableMonobehaviour

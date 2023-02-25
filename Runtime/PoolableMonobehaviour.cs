@@ -1,8 +1,8 @@
 ﻿using System;
 using UnityEngine;
-using SoftBoiledGames.ObjectPooler.Exceptions;
+using PixelSparkStudio.ObjectPooler.Exceptions;
 
-namespace SoftBoiledGames.ObjectPooler
+namespace PixelSparkStudio.ObjectPooler
 {
     public abstract class PoolableMonobehaviour : MonoBehaviour
     {

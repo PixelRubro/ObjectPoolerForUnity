@@ -1,5 +1,5 @@
 {
-    "name": "SoftBoiledGames.UnityObjectPooler.Editor",
+    "name": "PixelSparkStudio.UnityObjectPooler.Editor",
     "references": [],
     "includePlatforms": [
         "Editor"

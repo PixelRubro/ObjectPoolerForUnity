@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-namespace SoftBoiledGames.ObjectPooler.InspectorAttributes
+namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
 {
     [CustomPropertyDrawer(typeof(LeftToggleAttribute))]
     public class LeftToggleAttributeDrawer : BasePropertyDrawer 

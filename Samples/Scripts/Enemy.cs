@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SoftBoiledGames.ObjectPooler.Demo
+namespace PixelSparkStudio.ObjectPooler.Demo
 {
     public class Enemy : PoolableMonobehaviour
     {

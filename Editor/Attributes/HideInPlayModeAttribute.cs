@@ -1,6 +1,6 @@
 using System;
 
-namespace SoftBoiledGames.ObjectPooler.InspectorAttributes
+namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Hide the field if it is in Play Mode.

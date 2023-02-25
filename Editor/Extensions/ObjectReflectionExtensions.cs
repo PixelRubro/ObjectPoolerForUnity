@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-namespace SoftBoiledGames.ObjectPooler.Extensions
+namespace PixelSparkStudio.ObjectPooler.Extensions
 {
     public static class ObjectReflectionExtensions 
     {

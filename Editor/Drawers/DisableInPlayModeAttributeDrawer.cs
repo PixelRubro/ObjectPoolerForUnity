@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace SoftBoiledGames.ObjectPooler.InspectorAttributes
+namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
 {
     [CustomPropertyDrawer(typeof(DisableInPlayModeAttribute))]
     public class DisableInPlayModeAttributeDrawer : BasePropertyDrawer

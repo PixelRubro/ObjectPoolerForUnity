@@ -1,4 +1,4 @@
-namespace SoftBoiledGames.ObjectPooler.Extensions
+namespace PixelSparkStudio.ObjectPooler.Extensions
 {
     public static class ObjectExtensions 
     {

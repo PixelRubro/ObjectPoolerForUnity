@@ -1,4 +1,4 @@
-﻿namespace SoftBoiledGames.ObjectPooler.InspectorAttributes
+﻿namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Shows property if provided condition is met.

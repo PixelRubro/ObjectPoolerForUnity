@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 using System;
 
-namespace SoftBoiledGames.ObjectPooler.Extensions
+namespace PixelSparkStudio.ObjectPooler.Extensions
 {
     public static class StringExtensions 
     {

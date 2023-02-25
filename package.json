@@ -1,11 +1,11 @@
 {
-  "name": "com.softboiledgames.quickpooler",
+  "name": "com.pixelsparkstudio.quickpooler",
   "displayName": "Quick Pooler",
   "description": "A object pooling package for use in Unity projects.",
   "version": "1.0.0",
   "unity": "2019.4",
   "license": "MIT",
   "author": {
-    "name": "Soft Boiled Games"
+    "name": "Pixel Spark Studio"
   }
 }

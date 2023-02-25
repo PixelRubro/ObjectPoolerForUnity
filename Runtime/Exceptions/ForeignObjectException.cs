@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SoftBoiledGames.ObjectPooler.Exceptions
+namespace PixelSparkStudio.ObjectPooler.Exceptions
 {
     public class ForeignObjectException : Exception
     {

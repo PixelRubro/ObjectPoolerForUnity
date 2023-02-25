@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace SoftBoiledGames.ObjectPooler.InspectorAttributes
+namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Prevent a serialized field from being edited in inspector.
