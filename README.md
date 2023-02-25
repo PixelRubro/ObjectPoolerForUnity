@@ -11,13 +11,13 @@ This is an asset created to easily pool objects to avoid garbage collection. Ins
 - Open the Package Manager window
 - Click on the "plus" sign
 - Select "Add package from git URL"
-- Paste this repo's SSH link (git@github.com:SoftBoiledGames/QuickPooler.git)
+- Paste this repo's SSH link (git@github.com:PixelSparkStudio/QuickPooler.git)
 
 ### Editing manifest file
 
 Add the following line to your `manifest.json` found in the "Packages" folder
 
-`    "com.softboiledgames.quickpooler": "git@github.com:SoftBoiledGames/QuickPooler.git"`
+`    "com.pixelsparkstudio.quickpooler": "git@github.com:PixelSparkStudio/QuickPooler.git"`
 
 ## How do I use this?
 
