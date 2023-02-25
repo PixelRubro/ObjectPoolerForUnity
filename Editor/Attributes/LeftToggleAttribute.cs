@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
+namespace PixelSpark.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Set the boolean checkbox at the left of the field's label.

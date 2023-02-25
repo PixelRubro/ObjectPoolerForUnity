@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
+namespace PixelSpark.ObjectPooler.InspectorAttributes
 {
     [CustomPropertyDrawer(typeof(LeftToggleAttribute))]
     public class LeftToggleAttributeDrawer : BasePropertyDrawer 

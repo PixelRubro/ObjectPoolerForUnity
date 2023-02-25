@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System;
-using PixelSparkStudio.ObjectPooler.Extensions;
+using PixelSpark.ObjectPooler.Extensions;
 
-namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
+namespace PixelSpark.ObjectPooler.InspectorAttributes
 {
     public abstract class BasePropertyDrawer: PropertyDrawer 
     {

@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
-using PixelSparkStudio.ObjectPooler.Exceptions;
+using PixelSpark.ObjectPooler.Exceptions;
 
-namespace PixelSparkStudio.ObjectPooler
+namespace PixelSpark.ObjectPooler
 {
     public abstract class PoolableMonobehaviour : MonoBehaviour
     {
@@ -70,6 +71,10 @@ namespace PixelSparkStudio.ObjectPooler
 
         private int _ticksLeft;
 
+        private Transform _transform;
+
+        private QuickObjectPooler _pool;
+
         #endregion
 
         #region Properties
@@ -79,6 +84,11 @@ namespace PixelSparkStudio.ObjectPooler
         #endregion
 
         #region Unity Events
+
+        // private void Awake()
+        // {
+        //     AssignComponents();
+        // }
 
         protected virtual void Start()
         {
@@ -92,7 +102,12 @@ namespace PixelSparkStudio.ObjectPooler
 
         protected virtual void OnDisable()
         {
-            DeactivateGameObject();
+            OnDeactivation?.Invoke();
+        }
+
+        protected void OnDestroy()
+        {
+            OnDeactivation = null;
         }
 
         #endregion
@@ -105,15 +120,13 @@ namespace PixelSparkStudio.ObjectPooler
         /// </summary>
         public void Tick()
         {
-            if (_hasDeactivationByTicks)
-            {
-                _ticksLeft--;
+            if (!_hasDeactivationByTicks) return;
+            
+            _ticksLeft--;
 
-                if (_ticksLeft <= 0)
-                {
-                    StartDeactivation();
-                }
-            }
+            if (_ticksLeft > 0) return;
+            
+            StartDeactivation();
         }
 
         /// <summary>
@@ -142,18 +155,25 @@ namespace PixelSparkStudio.ObjectPooler
             DeactivateGameObject();
         }
 
+        public void SetPosition(Vector3 spawnPosition)
+        {
+            _transform.position = spawnPosition;
+        }
+
         #endregion
 
         #region Internal methods
 
-        internal void Initialize(int id)
+        internal void Initialize(int id, QuickObjectPooler pool)
         {
             if (_isInitialized)
             {
                 return;
             }
-
+            
+            AssignComponents();
             _id = id;
+            _pool = pool;
             _isInitialized = true;
             OnInitialize?.Invoke();
         }
@@ -176,6 +196,7 @@ namespace PixelSparkStudio.ObjectPooler
             _hasDeactivationTimer = true;
             _hasDeactivationByTicks = false;
             OnActivate?.Invoke();
+            // StartCoroutine(KillObjectInTime(lifespan));
             Invoke(nameof(StartDeactivation), lifespan);
         }
 
@@ -200,15 +221,32 @@ namespace PixelSparkStudio.ObjectPooler
             }
         }
 
+        private void AssignComponents()
+        {
+            _transform = transform;
+        }
+
         private void DeactivateGameObject()
         {
             if (gameObject.activeInHierarchy == false)
             {
                 return;
             }
+            
+            if (gameObject.activeInHierarchy)
+            {
+                gameObject.SetActive(false);
+            }
 
-            gameObject.SetActive(false);
             OnDeactivation?.Invoke();
+            _pool.Return(this);
+        }
+
+        private IEnumerator KillObjectInTime(float lifespan)
+        {
+            yield return new WaitForSeconds(lifespan);
+            
+            StartDeactivation();
         }
 
         #endregion

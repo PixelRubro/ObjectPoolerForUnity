@@ -1,6 +1,6 @@
 using System;
 
-namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
+namespace PixelSpark.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Hide the field if it is in Play Mode.

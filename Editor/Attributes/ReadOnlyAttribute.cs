@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
+namespace PixelSpark.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Prevent a serialized field from being edited in inspector.

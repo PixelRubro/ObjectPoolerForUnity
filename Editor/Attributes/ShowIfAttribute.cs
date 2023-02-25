@@ -1,4 +1,4 @@
-﻿namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
+﻿namespace PixelSpark.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Shows property if provided condition is met.

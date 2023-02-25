@@ -1,9 +1,9 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using System.Reflection;
-using PixelSparkStudio.ObjectPooler.Extensions;
+using PixelSpark.ObjectPooler.Extensions;
 
-namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
+namespace PixelSpark.ObjectPooler.InspectorAttributes
 {
     public abstract class ConditionalAttributeDrawer : BasePropertyDrawer
     {

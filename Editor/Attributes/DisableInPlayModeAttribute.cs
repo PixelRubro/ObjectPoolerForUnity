@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
+namespace PixelSpark.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Make the field read-only when the editor is in play mode.

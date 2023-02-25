@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PixelSparkStudio.ObjectPooler.Demo
+namespace PixelSpark.ObjectPooler.Demo
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class ShipController : MonoBehaviour
@@ -27,7 +27,7 @@ namespace PixelSparkStudio.ObjectPooler.Demo
 
         private Rigidbody2D _rb2d;
 
-        private ObjectPooler _objectPooler;
+        private QuickObjectPooler _objectPooler;
 
         #endregion
 
@@ -39,7 +39,7 @@ namespace PixelSparkStudio.ObjectPooler.Demo
         private void Awake()
         {
             _rb2d = GetComponent<Rigidbody2D>();
-            _objectPooler = GetComponent<ObjectPooler>();
+            _objectPooler = GetComponent<QuickObjectPooler>();
         }
 
         private void Update()
@@ -77,8 +77,7 @@ namespace PixelSparkStudio.ObjectPooler.Demo
                 return;
             }
 
-            var shot = _objectPooler.Pop<Shot>();
-            shot.transform.position = _shotOrigin.position;
+            var shot = _objectPooler.Pop<Shot>(_shotOrigin.position);
             shot.Setup(1f, 800f);
         }
 

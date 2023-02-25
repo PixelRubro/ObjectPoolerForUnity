@@ -1,6 +1,6 @@
 using System;
 
-namespace PixelSparkStudio.ObjectPooler.Extensions
+namespace PixelSpark.ObjectPooler.Extensions
 {
     public static class SystemTypeExtensions 
     {

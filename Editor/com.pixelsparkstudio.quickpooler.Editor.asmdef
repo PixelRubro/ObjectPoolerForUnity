@@ -1,5 +1,5 @@
 {
-    "name": "pixelsparkstudio.quickpooler.Editor",
+    "name": "PixelSpark.quickpooler.Editor",
     "references": [],
     "includePlatforms": [
         "Editor"

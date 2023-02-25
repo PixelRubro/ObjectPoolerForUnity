@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PixelSparkStudio.ObjectPooler.InspectorAttributes
+namespace PixelSpark.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Base class for comparison attributes.
