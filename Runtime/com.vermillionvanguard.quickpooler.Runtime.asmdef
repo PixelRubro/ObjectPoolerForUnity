@@ -1,5 +1,5 @@
 {
-    "name": "com.vermillionvanguard.quickpooler",
+    "name": "com.vermillionvanguard.quickpooler.Runtime",
     "references": [
         "GUID:427b94ed32f407248bedfbaa78a11f5b"
     ],
