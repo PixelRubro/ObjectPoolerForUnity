@@ -1,7 +1,7 @@
 {
-    "name": "com.PixelSpark.quickpooler.Samples",
+    "name": "com.vermillionvanguard.quickpooler",
     "references": [
-        "GUID:c7ee922411537ef4b91cdca5eb5f7793"
+        "GUID:427b94ed32f407248bedfbaa78a11f5b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,5 +1,5 @@
 {
-    "name": "PixelSpark.quickpooler.Editor",
+    "name": "com.vermillionvanguard.quickpooler.Editor",
     "references": [],
     "includePlatforms": [
         "Editor"

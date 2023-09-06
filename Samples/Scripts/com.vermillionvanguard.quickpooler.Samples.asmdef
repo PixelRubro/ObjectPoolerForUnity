@@ -1,7 +1,7 @@
 {
-    "name": "com.pixelsparkstudio.quickpooler",
+    "name": "com.vermillionvanguard.quickpooler.Samples",
     "references": [
-        "GUID:427b94ed32f407248bedfbaa78a11f5b"
+        "GUID:c7ee922411537ef4b91cdca5eb5f7793"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

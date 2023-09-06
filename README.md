@@ -11,13 +11,13 @@ This is an asset created to easily pool objects to avoid garbage collection. Ins
 - Open the Package Manager window
 - Click on the "plus" sign
 - Select "Add package from git URL"
-- Paste this repo's SSH link (git@github.com:PixelSparkStudio/QuickPooler.git)
+- Paste this repo's SSH link (<git@github.com>:VermillionVanguard/QuickPooler.git)
 
 ### Editing manifest file
 
 Add the following line to your `manifest.json` found in the "Packages" folder
 
-`    "com.pixelsparkstudio.quickpooler": "git@github.com:PixelSparkStudio/QuickPooler.git"`
+`"com.vermillionvanguard.quickpooler": "git@github.com:VermillionVanguard/QuickPooler.git"`
 
 ## How do I use this?
 
@@ -39,7 +39,7 @@ The operations to retrieve an object from the pool and to return an object to th
 
 ## Why can't I open the demo scene?
 
-This is a known limitation of the Unity team. Until they look at it, you will have to drag the scene file into somewhere in your "Assets" folder.
+This is a limitation known by the Unity team. Until they look at it, you will have to drag the scene file into somewhere in your "Assets" folder.
 
 ## There are any events fired along the flow of the asset?
 
