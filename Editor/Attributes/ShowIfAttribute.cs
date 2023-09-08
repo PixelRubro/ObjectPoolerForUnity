@@ -1,4 +1,4 @@
-﻿namespace PixelSpark.ObjectPooler.InspectorAttributes
+﻿namespace VermillionVanguard.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Shows property if provided condition is met.

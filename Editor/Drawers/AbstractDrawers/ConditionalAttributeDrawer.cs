@@ -1,9 +1,9 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using System.Reflection;
-using PixelSpark.ObjectPooler.Extensions;
+using VermillionVanguard.ObjectPooler.Extensions;
 
-namespace PixelSpark.ObjectPooler.InspectorAttributes
+namespace VermillionVanguard.ObjectPooler.InspectorAttributes
 {
     public abstract class ConditionalAttributeDrawer : BasePropertyDrawer
     {

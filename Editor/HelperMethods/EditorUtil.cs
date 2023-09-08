@@ -5,9 +5,9 @@ using System.IO;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using PixelSpark.ObjectPooler.Extensions;
+using VermillionVanguard.ObjectPooler.Extensions;
 
-namespace PixelSpark.ObjectPooler.InspectorAttributes.Utilities
+namespace VermillionVanguard.ObjectPooler.InspectorAttributes.Utilities
 {
     public static class EditorUtil
     {

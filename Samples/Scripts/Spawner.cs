@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PixelSpark.ObjectPooler.Demo
+namespace VermillionVanguard.ObjectPooler.Demo
 {
     public class Spawner : MonoBehaviour
     {

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using PixelSpark.ObjectPooler.Exceptions;
+using VermillionVanguard.ObjectPooler.Exceptions;
 
-namespace PixelSpark.ObjectPooler
+namespace VermillionVanguard.ObjectPooler
 {
     public class QuickObjectPooler : MonoBehaviour
     {

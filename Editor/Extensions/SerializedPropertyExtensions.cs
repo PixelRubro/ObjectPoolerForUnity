@@ -2,12 +2,12 @@ using UnityEditor;
 using System;
 using System.Linq;
 using System.Reflection;
-using PixelSpark.ObjectPooler.InspectorAttributes;
-using PixelSpark.ObjectPooler.InspectorAttributes.Utilities;
+using VermillionVanguard.ObjectPooler.InspectorAttributes;
+using VermillionVanguard.ObjectPooler.InspectorAttributes.Utilities;
 
 #if UNITY_EDITOR
 
-namespace PixelSpark.ObjectPooler.Extensions
+namespace VermillionVanguard.ObjectPooler.Extensions
 {
     public static class SerializedPropertyExtensions
     {

@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace PixelSpark.ObjectPooler.InspectorAttributes
+namespace VermillionVanguard.ObjectPooler.InspectorAttributes
 {
     [CustomPropertyDrawer(typeof(HideInPlayModeAttribute))]
     public class HideInPlayModeAttributeDrawer : BasePropertyDrawer

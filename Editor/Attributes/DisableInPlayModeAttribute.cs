@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PixelSpark.ObjectPooler.InspectorAttributes
+namespace VermillionVanguard.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Make the field read-only when the editor is in play mode.

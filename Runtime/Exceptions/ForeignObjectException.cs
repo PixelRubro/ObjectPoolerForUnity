@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PixelSpark.ObjectPooler.Exceptions
+namespace VermillionVanguard.ObjectPooler.Exceptions
 {
     public class ForeignObjectException : Exception
     {

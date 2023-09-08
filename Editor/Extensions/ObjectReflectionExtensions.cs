@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-namespace PixelSpark.ObjectPooler.Extensions
+namespace VermillionVanguard.ObjectPooler.Extensions
 {
     public static class ObjectReflectionExtensions 
     {

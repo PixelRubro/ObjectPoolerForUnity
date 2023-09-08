@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PixelSpark.ObjectPooler.InspectorAttributes
+namespace VermillionVanguard.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Base class for comparison attributes.

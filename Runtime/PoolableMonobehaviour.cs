@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using PixelSpark.ObjectPooler.Exceptions;
+using VermillionVanguard.ObjectPooler.Exceptions;
 
-namespace PixelSpark.ObjectPooler
+namespace VermillionVanguard.ObjectPooler
 {
     public abstract class PoolableMonobehaviour : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-namespace PixelSpark.ObjectPooler.Extensions
+namespace VermillionVanguard.ObjectPooler.Extensions
 {
     public static class ObjectExtensions 
     {
