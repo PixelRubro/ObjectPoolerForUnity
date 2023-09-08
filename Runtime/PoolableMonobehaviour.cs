@@ -33,8 +33,8 @@ namespace VermillionVanguard.ObjectPooler
 
         #region Serialized fields
 
-        [SerializeField]
-        private float _deactivationCountdownDuration = 2f;
+        // [SerializeField]
+        // private float _deactivationCountdownDuration = 2f;
 
         [SerializeField]
 #if UNITY_EDITOR
