@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using VermillionVanguard.ObjectPooler.Exceptions;
+using PixelRouge.ObjectPooler.Exceptions;
 
-namespace VermillionVanguard.ObjectPooler
+namespace PixelRouge.ObjectPooler
 {
     public abstract class PoolableMonobehaviour : MonoBehaviour
     {

@@ -1,11 +1,11 @@
 {
-  "name": "com.vermillionvanguard.quickpooler",
-  "displayName": "Quick Pooler",
+  "name": "com.pixelrouge.objectpoolerforunity",
+  "displayName": "Object Pooler for Unity",
   "description": "A object pooling package for use in Unity projects.",
   "version": "1.0.0",
   "unity": "2019.4",
   "license": "MIT",
   "author": {
-    "name": "Vermillion Vanguard Studio"
+    "name": "Pixel Rouge Studio"
   }
 }

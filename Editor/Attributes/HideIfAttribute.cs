@@ -1,4 +1,4 @@
-namespace VermillionVanguard.ObjectPooler.InspectorAttributes
+namespace PixelRouge.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Hides property if provided condition is met.

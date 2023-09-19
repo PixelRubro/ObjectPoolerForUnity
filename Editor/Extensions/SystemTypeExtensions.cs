@@ -1,6 +1,6 @@
 using System;
 
-namespace VermillionVanguard.ObjectPooler.Extensions
+namespace PixelRouge.ObjectPooler.Extensions
 {
     public static class SystemTypeExtensions 
     {

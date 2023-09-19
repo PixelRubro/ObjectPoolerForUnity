@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VermillionVanguard.ObjectPooler.Demo
+namespace PixelRouge.ObjectPooler.Demo
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class Shot : PoolableMonobehaviour

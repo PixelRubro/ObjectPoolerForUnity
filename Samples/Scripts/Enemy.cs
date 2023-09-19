@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VermillionVanguard.ObjectPooler.Demo
+namespace PixelRouge.ObjectPooler.Demo
 {
     public class Enemy : PoolableMonobehaviour
     {

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System;
-using VermillionVanguard.ObjectPooler.Extensions;
+using PixelRouge.ObjectPooler.Extensions;
 
-namespace VermillionVanguard.ObjectPooler.InspectorAttributes
+namespace PixelRouge.ObjectPooler.InspectorAttributes
 {
     public abstract class BasePropertyDrawer: PropertyDrawer 
     {

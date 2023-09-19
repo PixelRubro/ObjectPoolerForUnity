@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VermillionVanguard.ObjectPooler.Exceptions
+namespace PixelRouge.ObjectPooler.Exceptions
 {
     public class DuplicateRegisteringException : Exception
     {

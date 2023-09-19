@@ -1,6 +1,6 @@
 using System;
 
-namespace VermillionVanguard.ObjectPooler.InspectorAttributes
+namespace PixelRouge.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Hide the field if it is in Play Mode.

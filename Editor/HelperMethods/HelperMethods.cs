@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace VermillionVanguard.ObjectPooler.InspectorAttributes.Utilities
+namespace PixelRouge.ObjectPooler.InspectorAttributes.Utilities
 {
     public class HelperMethods 
     {

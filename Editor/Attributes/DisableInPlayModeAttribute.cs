@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VermillionVanguard.ObjectPooler.InspectorAttributes
+namespace PixelRouge.ObjectPooler.InspectorAttributes
 {
     /// <summary>
     /// Make the field read-only when the editor is in play mode.
