@@ -1,5 +1,5 @@
 {
-    "name": "com.vermillionvanguard.quickpooler.Editor",
+    "name": "com.pixelrouge.objectpoolerforunity.Editor",
     "references": [],
     "includePlatforms": [
         "Editor"
